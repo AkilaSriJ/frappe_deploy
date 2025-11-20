@@ -3,11 +3,11 @@
   "db_port": "17239",
   "db_name": "defaultdb",
   "db_user": "avnadmin",
-  "db_password": "CHANGE_ME_DB_PASSWORD",
+  "db_password": "AVNS_ZLUm8CKVh0-dzE_jMV7",
 
-  "redis_cache": "CHANGE_ME_REDIS_CACHE",
-  "redis_queue": "CHANGE_ME_REDIS_CACHE",
-  "redis_socketio": "CHANGE_ME_REDIS_CACHE",
+  "redis_cache": "redis://default:ASmcAAIncDJlZTdjNzhiMTVlY2I0MThhODliZDZkYmU4Mjk5ZWY2Y3AyMTA2NTI@hardy-kite-10652.upstash.io:6379",
+  "redis_queue": "redis://default:ASmcAAIncDJlZTdjNzhiMTVlY2I0MThhODliZDZkYmU4Mjk5ZWY2Y3AyMTA2NTI@hardy-kite-10652.upstash.io:6379",
+  "redis_socketio": "redis://default:ASmcAAIncDJlZTdjNzhiMTVlY2I0MThhODliZDZkYmU4Mjk5ZWY2Y3AyMTA2NTI@hardy-kite-10652.upstash.io:6379",
 
-  "admin_password": "CHANGE_ME_ADMIN_PASSWORD"
+  "admin_password": "admin@123"
 }
