@@ -1,0 +1,113 @@
+services:
+  frappe:
+    image: ghcr.io/rtcamp/frappe-manager-frappe:v0.18.0
+    container_name: fm__Newsite_localhost__frappe
+    environment:
+      USERID: 1000
+      USERGROUP: 1000
+      SERVICE_NAME: frappe
+    volumes:
+    - fm-sockets:/fm-sockets
+    - ./workspace:/workspace
+    expose:
+    - 80
+    labels:
+      devcontainer.metadata: '[{ "remoteUser": "frappe"}]'
+    networks:
+      site-network: 
+      global-backend-network: 
+
+  nginx:
+    image: ghcr.io/rtcamp/frappe-manager-nginx:v0.18.0
+    container_name: fm__Newsite_localhost__nginx
+    user: 1000:1000
+    environment:
+      SITENAME: Newsite.localhost
+      VIRTUAL_HOST: Newsite.localhost
+      VIRTUAL_PORT: 80
+      HSTS: off
+    volumes:
+    - ./workspace:/workspace
+    - ./configs/nginx/conf:/etc/nginx
+    - ./configs/nginx/logs:/var/log/nginx
+    - ./configs/nginx/cache:/var/cache/nginx
+    - ./configs/nginx/run:/var/run
+    - ./configs/nginx/html:/usr/share/nginx/html
+    expose:
+    - 80
+    networks:
+      site-network:
+        aliases:
+        - Newsite.localhost
+      global-frontend-network: 
+
+  socketio:
+    image: ghcr.io/rtcamp/frappe-manager-frappe:v0.18.0
+    container_name: fm__Newsite_localhost__socketio
+    environment:
+      USERID: 1000
+      USERGROUP: 1000
+      SERVICE_NAME: socketio
+    expose:
+    - 80
+    command: launch_supervisor_service.sh
+    volumes:
+    - fm-sockets:/fm-sockets
+    - ./workspace:/workspace
+    networks:
+      site-network: 
+
+  schedule:
+    image: ghcr.io/rtcamp/frappe-manager-frappe:v0.18.0
+    container_name: fm__Newsite_localhost__schedule
+    environment:
+      USERID: 1000
+      USERGROUP: 1000
+      SERVICE_NAME: schedule
+    command: launch_supervisor_service.sh
+    volumes:
+    - fm-sockets:/fm-sockets
+    - ./workspace:/workspace
+    networks:
+      site-network: 
+      global-backend-network: 
+
+  redis-cache:
+    image: redis:8-alpine
+    container_name: fm__Newsite_localhost__redis-cache
+    volumes:
+    - redis-cache-data:/data
+    expose:
+    - 6379
+    networks:
+      site-network: 
+
+  redis-queue:
+    image: redis:8-alpine
+    container_name: fm__Newsite_localhost__redis-queue
+    volumes:
+    - redis-queue-data:/data
+    expose:
+    - 6379
+    networks:
+      site-network: 
+
+volumes:
+  fm-sockets:
+    name: fm__Newsite_localhost__fm-sockets
+  redis-queue-data:
+    name: fm__Newsite_localhost__redis-queue-data
+  redis-cache-data:
+    name: fm__Newsite_localhost__redis-cache-data
+
+networks:
+  site-network:
+    name: fm__Newsite_localhost__network
+    external: false
+  global-frontend-network:
+    name: fm-global-frontend-network
+    external: true
+  global-backend-network:
+    name: fm-global-backend-network
+    external: true
+x-version: 0.18.0

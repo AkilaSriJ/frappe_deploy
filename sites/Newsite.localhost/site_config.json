@@ -1,0 +1,13 @@
+{
+  "db_host": "mysql-1cd52d52-sriakila29125-4c07.e.aivencloud.com",
+  "db_port": "17239",
+  "db_name": "defaultdb",
+  "db_user": "avnadmin",
+  "db_password": "AVNS_ZLUm8CKVh0-dzE_jMV7",
+
+  "redis_cache": "redis://default:ASmcAAIncDJlZTdjNzhiMTVlY2I0MThhODliZDZkYmU4Mjk5ZWY2Y3AyMTA2NTI@hardy-kite-10652.upstash.io:6379",
+  "redis_queue": "redis://default:ASmcAAIncDJlZTdjNzhiMTVlY2I0MThhODliZDZkYmU4Mjk5ZWY2Y3AyMTA2NTI@hardy-kite-10652.upstash.io:6379",
+  "redis_socketio": "redis://default:ASmcAAIncDJlZTdjNzhiMTVlY2I0MThhODliZDZkYmU4Mjk5ZWY2Y3AyMTA2NTI@hardy-kite-10652.upstash.io:6379",
+
+  "admin_password": "admin@123"
+}

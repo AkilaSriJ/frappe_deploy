@@ -1,0 +1,6 @@
+name = "Newsite.localhost"
+developer_mode = true
+admin_tools = true
+environment_type = "dev"
+admin_tools_username = "admin"
+admin_tools_password = "IToAQ2Szb1aE5AjfiidJJg"

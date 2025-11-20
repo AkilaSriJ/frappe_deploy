@@ -1,0 +1,46 @@
+services:
+  long-worker:
+    image: ghcr.io/rtcamp/frappe-manager-frappe:v0.18.0
+    container_name: fm__Newsite_localhost__long-worker
+    command: launch_supervisor_service.sh
+    networks:
+      site-network: 
+      global-backend-network: 
+    volumes:
+    - fm-sockets:/fm-sockets
+    - ./workspace:/workspace
+    environment:
+      USERID: 1000
+      USERGROUP: 1000
+      SERVICE_NAME: worker-name
+
+      WORKER_NAME: long-worker
+  short-worker:
+    image: ghcr.io/rtcamp/frappe-manager-frappe:v0.18.0
+    container_name: fm__Newsite_localhost__short-worker
+    command: launch_supervisor_service.sh
+    networks:
+      site-network: 
+      global-backend-network: 
+    volumes:
+    - fm-sockets:/fm-sockets
+    - ./workspace:/workspace
+    environment:
+      USERID: 1000
+      USERGROUP: 1000
+      SERVICE_NAME: worker-name
+
+      WORKER_NAME: short-worker
+volumes:
+  fm-sockets:
+    name: fm__Newsite_localhost__fm-sockets
+    external: true
+
+networks:
+  site-network:
+    name: fm__Newsite_localhost__network
+    external: false
+  global-backend-network:
+    name: fm-global-backend-network
+    external: true
+x-version: 0.18.0

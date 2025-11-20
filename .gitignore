@@ -1,0 +1,23 @@
+# Ignore all other sites
+sites/firstsite.localhost/
+sites/mysite.localhost/
+
+# Ignore workspace directories
+**/workspace/
+**/.nvm/
+**/.oh-my-zsh/
+**/.pyenv/
+
+# Ignore core frappe apps
+apps/frappe/
+apps/erpnext/
+apps/*/node_modules/
+apps/*/.git/
+
+# Ignore logs and services
+logs/
+services/
+
+# Ignore python cache
+**/__pycache__/
+*.pyc

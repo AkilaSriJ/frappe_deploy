@@ -1,0 +1,40 @@
+services:
+  mailpit:
+    image: axllent/mailpit:v1.22
+    container_name: fm__Newsite_localhost__mailpit
+    volumes:
+    - mailpit-data:/data
+    expose:
+    - 1025
+    - 8025
+    networks:
+      site-network: 
+    environment:
+      MP_WEBROOT: mailpit
+      MP_MAX_MESSAGES: 5000
+      MP_DATABASE: /data/mailpit.db
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+
+  adminer:
+    image: adminer:4
+    container_name: fm__Newsite_localhost__adminer
+    expose:
+    - 8080
+    networks:
+      site-network: 
+      global-backend-network: 
+    environment:
+      ADMINER_DEFAULT_SERVER: global-db
+volumes:
+  mailpit-data:
+    name: fm__Newsite_localhost__mailpit-data
+
+networks:
+  site-network:
+    name: fm__Newsite_localhost__network
+    external: false
+  global-backend-network:
+    name: fm-global-backend-network
+    external: true
+x-version: 0.18.0
