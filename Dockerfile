@@ -1,6 +1,6 @@
 FROM frappe/bench:latest
 
-WORKDIR /home/frappe
+WORKDIR /home/frappe/frappe-bench
 
 COPY apps ./apps
 COPY sites ./sites
