@@ -1,4 +1,4 @@
-FROM frappe/bench:version-14
+FROM frappe/bench:latest
 
 WORKDIR /home/frappe
 
