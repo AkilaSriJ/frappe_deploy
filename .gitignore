@@ -1,6 +1,7 @@
 # Ignore all other sites
 sites/firstsite.localhost/
 sites/mysite.localhost/
+sites/Newsite.localhost/site_config.json
 
 # Ignore workspace directories
 **/workspace/
